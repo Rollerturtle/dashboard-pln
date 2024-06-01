@@ -69,13 +69,28 @@ const Dashboard = () => {
           </Button>
 
           {/* Large Filter Button */}
-          <FormControl sx={{ width: 200 }}>
+          <FormControl sx={{ width: 100 }}>
           <InputLabel id="demo-simple-select-label">Filter</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={filterValue}
-            label="Filter"
+            label="Unit"
+            onChange={handleFilterChange}
+          >
+            <MenuItem value={10}>Option 1</MenuItem>
+            <MenuItem value={20}>Option 2</MenuItem>
+            <MenuItem value={30}>Option 3</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ width: 100 }}>
+          <InputLabel id="demo-simple-select-label">Filter</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={filterValue}
+            label="Tahun"
             onChange={handleFilterChange}
           >
             <MenuItem value={10}>Option 1</MenuItem>

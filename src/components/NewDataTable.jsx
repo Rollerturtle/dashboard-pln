@@ -6,6 +6,7 @@ import { Box, LinearProgress, Typography } from '@mui/material';
 import { tokens } from "../theme"; // Adjust the path to where your theme tokens are stored
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
+import PropTypes from 'prop-types';
 
 const IncreaseCell = (params) => {
   const theme = useTheme();
@@ -60,8 +61,6 @@ const StatusCell = (params) => {
   );
 };
 
-
-
 const ProgressBarCell = (params) => {
   const theme = useTheme();
   const value = params.value;
@@ -107,13 +106,13 @@ const ProgressBarCell = (params) => {
   );
 };
 
-
-
-
-const NewDataTable = ({ data }) => {
+const NewDataTable = ({ data, showToolbar, isDetailedPage }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [pageSize, setPageSize] = useState(12);
+
+  const density = isDetailedPage ? 'standard' : 'compact';
+  const boxHeight = isDetailedPage ? '65vh' : '37vh';
 
   const columns = [
     { field: 'Bulan', headerName: 'Month', flex: 1,width: 130, headerAlign: 'center', align: 'center' },
@@ -228,7 +227,7 @@ const NewDataTable = ({ data }) => {
   };
 
   return (
-    <Box sx={{ height: '65vh', width: '100%', ...dataGridThemeStyles }}>
+    <Box sx={{ height: boxHeight, width: '100%', ...dataGridThemeStyles }}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -236,13 +235,25 @@ const NewDataTable = ({ data }) => {
         onPageSizeChange={handlePageSizeChange}
         rowsPerPageOptions={[6, 12, 24, 36, 48, 60, 72, 84, 96]}
         pagination
+        density={density}
         components={{
-          Toolbar: GridToolbar,
+          Toolbar: showToolbar ? GridToolbar : null,
         }}
         // Add other necessary props and handlers as in your DataTable component
       />
     </Box>
   );
+};
+
+NewDataTable.propTypes = {
+  data: PropTypes.array.isRequired,
+  showToolbar: PropTypes.bool,
+  isDetailedPage: PropTypes.bool, // Prop baru untuk menentukan halaman detail atau bukan
+};
+
+NewDataTable.defaultProps = {
+  showToolbar: false,
+  isDetailedPage: false, // Default tidak pada detailed page
 };
 
 export default NewDataTable;

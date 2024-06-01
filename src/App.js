@@ -27,6 +27,13 @@ import Pelanggan from "../src/scenes/Data/PenyambunganPelanggan"
 import Retur from "../src/scenes/Data/Retur/index"
 import SaldoTunggakan from "../src/scenes/Data/SaldoTunggakan/index"
 import PiutangPrabayar from "../src/scenes/Data/PiutangPrabayar/index"
+import SecondDashboard from "../src/scenes/seconddashboard/index"
+import Maps from "../src/scenes/maps/index";
+import Dashboard1 from "../src/scenes/dashboard/dashboard1"
+import Dashboard2 from "../src/scenes/dashboard/dashboard2"
+import Dashboard3 from "../src/scenes/dashboard/dashboard3"
+import FileManagement from "./scenes/FileManagement";
+import MapPage from "./scenes/MapPage";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -69,6 +76,13 @@ function App() {
               <Route path="/retur" element={<Retur />} />
               <Route path="/saldotunggakan" element={<SaldoTunggakan />} />
               <Route path="/piutangprabayar" element={<PiutangPrabayar />} />
+              <Route path="/seconddashboard" element={<SecondDashboard />} />
+              <Route path="/maps" element={<Maps />} />
+              <Route path="/dashboard/dashboard1" element={<Dashboard1/>} />
+              <Route path="/dashboard/dashboard2" element={<Dashboard2 isSidebar={isSidebar}/>} />
+              <Route path="/dashboard/dashboard3" element={<Dashboard3/>} />
+              <Route path="/filemanagemen" element={<FileManagement/>}/>
+              <Route path="/persebaranpelanggan" element={<MapPage />}/>
             </Routes>
           </main>
         </div>

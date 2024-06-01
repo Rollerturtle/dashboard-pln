@@ -1,51 +1,59 @@
-// NewAreaChart:
+// DashboardAreaChart.js
 import React from 'react';
-import { ResponsiveLine } from '@nivo/line'; // This is for line charts which can be turned into area charts
+import { ResponsiveLine } from '@nivo/line';
 import { useTheme } from '@mui/material/styles';
-import { tokens } from "../theme"; // Adjust the import path to where your theme tokens are located
+import { tokens } from "../../theme"; // Sesuaikan path ini dengan lokasi theme Anda
+import { mockAreaData as data } from './mockdata'; // Asumsi data sudah di-import dengan benar
 
-const NewAreaChart = ({ data, isDashboard }) => {
+const DashboardAreaChart = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // Transform data to fit the Nivo Line chart which can be used as an area chart by enabling the 'enableArea' prop
-  const transformedData = data.map(serie => ({
-    ...serie,
-    data: serie.data.map(item => ({
-      x: item.x,
-      y: item.y
-    }))
-  }));
-
-  const CustomTooltip = ({ point }) => {
-    const theme = useTheme();
-    return (
-      <div
-        style={{
-          background: theme.palette.mode === 'dark' ? 'black' : 'white',
-          padding: '9px 12px',
-          border: '1px solid #ccc',
-          borderRadius: '2px',
-          color: theme.palette.mode === 'dark' ? 'white' : 'black',
-        }}
-      >
-        <strong>{point.serieId}</strong> - {point.data.xFormatted}: {point.data.yFormatted}
-      </div>
-    );
-  };
-  
-  const chartMargins = isDashboard ? 
-  { top: 10, right: 90, left: 40, bottom: 460 } :
-  { top: 50, right: 110, bottom: 50, left: 60 };
+  // Transformasi data untuk format yang sesuai dengan Nivo Line Chart
+  const transformedData = [
+    {
+      "id": "Target Saldo Tunggakan",
+      "data": data.map(item => ({
+        "x": item.bulan,
+        "y": item["Target Saldo Tunggakan"]
+      }))
+    },
+    {
+      "id": "Realisasi Saldo Tunggakan",
+      "data": data.map(item => ({
+        "x": item.bulan,
+        "y": item["Realisasi Saldo Tunggakan"]
+      }))
+    },
+    {
+      "id": "Target Saldo Retur",
+      "data": data.map(item => ({
+        "x": item.bulan,
+        "y": item["Target Saldo Retur"]
+      }))
+    },
+    {
+      "id": "Realisasi Saldo Retur",
+      "data": data.map(item => ({
+        "x": item.bulan,
+        "y": item["Realisasi Saldo Retur"]
+      }))
+    }
+  ];
 
   return (
-    <div style={{ height: 650 }}>
+    <div style={{ height: 250 }}>
       <ResponsiveLine
         data={transformedData}
-        tooltip={CustomTooltip} 
-        margin={chartMargins}
+        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: '0', max: 'auto', stacked: true, reverse: false }}
+        yScale={{
+          type: 'linear',
+          min: 'auto',
+          max: 'auto',
+          stacked: true,
+          reverse: false
+        }}
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -53,27 +61,16 @@ const NewAreaChart = ({ data, isDashboard }) => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "Bulan",
-          legendOffset: 36,
+          legend: 'Bulan',
+          legendOffset: 46,
           legendPosition: 'middle'
         }}
-        axisLeft={{
-          orient: 'left',
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "Jumlah Pelanggan",
-          legendOffset: -40,
-          legendPosition: 'middle'
-        }}
-        colors={{scheme:"nivo"}}
+        enableArea={true}
         pointSize={10}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}
         useMesh={true}
-        enableArea={true}
-        areaOpacity={0.65}
         legends={[
           {
             anchor: 'bottom-right',
@@ -144,4 +141,4 @@ const NewAreaChart = ({ data, isDashboard }) => {
   );
 };
 
-export default NewAreaChart;
+export default DashboardAreaChart;

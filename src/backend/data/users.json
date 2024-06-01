@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Pemasaran", "avatar": "https://fastly.picsum.photos/id/534/536/354.jpg?hmac=tab6Z5S4lvYxZsVcDIxELokB38Smjq75X4XQxpRBgg0", "password": "SARPP_2023", "pin": "02022023" },
+    { "id": 2, "name": "Perencanaan", "avatar": "https://fastly.picsum.photos/id/340/536/354.jpg?hmac=TEqJ_0Lnvw38Q0oP_A5i3KuSxW6HV1xiJ3U_W8LW7G4", "password": "PER_2023", "pin": "02012023" },
+    { "id": 3, "name": "Teknologi", "avatar": "https://fastly.picsum.photos/id/402/536/354.jpg?hmac=UbjPJDMe5A-FkmgSVsRgdEfhBcqEngAZP6Z9bbHkYR0", "password": "TEL_2023", "pin": "11012023" },
+    { "id": 4, "name": "Konstruksi", "avatar": "https://fastly.picsum.photos/id/1042/536/354.jpg?hmac=ufUb_vh2UOOUcIrQWrUWzj_um4-ucXsMUkjq9ysdgyM", "password": "KONS_2023", "pin": "00002023" }
+]
